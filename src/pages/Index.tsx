@@ -24,7 +24,7 @@ const Index = () => {
       bonus: 'До 5000₽',
       description: 'за каждого приглашенного друга',
       features: ['Кешбэк до 30%', 'Бесплатное обслуживание', 'Переводы без комиссии'],
-      link: '#'
+      link: 'https://tbank.ru/baf/3ZMdSH6pdjA'
     },
     {
       name: 'ВТБ',
@@ -189,11 +189,14 @@ const Index = () => {
                   </div>
                   
                   <Button 
-                    className={`w-full mt-6 bg-gradient-to-r ${bank.color} hover:opacity-90 transition-all hover:scale-105`}
+                    className={`w-full mt-6 bg-gradient-to-r ${bank.color} hover:opacity-90 transition-all hover:scale-105 text-white`}
                     size="lg"
+                    asChild
                   >
-                    <Icon name="ExternalLink" className="mr-2" size={20} />
-                    Получить ссылку
+                    <a href={bank.link} target="_blank" rel="noopener noreferrer">
+                      <Icon name="ExternalLink" className="mr-2" size={20} />
+                      Получить ссылку
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
