@@ -40,9 +40,10 @@ const Index = () => {
       logo: '🔴',
       color: 'from-red-500 to-red-600',
       bonus: 'До 10000₽',
-      description: 'кешбэк и бонусы за активность',
-      features: ['Суперкешбэк до 100%', '2 месяца бесплатно', 'Премиум подписки в подарок'],
-      link: '#'
+      description: 'деньги за оформление карты или открытие счёта',
+      features: ['Карты и счета для физлиц', 'Счет для бизнеса: 2000 баллов', 'Кэшбэк до 10% за расчёты'],
+      link: 'https://alfa.me/PSgISW',
+      businessLink: 'https://alfa.me/nn1B5i'
     }
   ];
 
@@ -188,16 +189,32 @@ const Index = () => {
                     ))}
                   </div>
                   
-                  <Button 
-                    className={`w-full mt-6 bg-gradient-to-r ${bank.color} hover:opacity-90 transition-all hover:scale-105 text-white`}
-                    size="lg"
-                    asChild
-                  >
-                    <a href={bank.link} target="_blank" rel="noopener noreferrer">
-                      <Icon name="ExternalLink" className="mr-2" size={20} />
-                      Получить ссылку
-                    </a>
-                  </Button>
+                  <div className="space-y-2">
+                    <Button 
+                      className={`w-full bg-gradient-to-r ${bank.color} hover:opacity-90 transition-all hover:scale-105 text-white`}
+                      size="lg"
+                      asChild
+                    >
+                      <a href={bank.link} target="_blank" rel="noopener noreferrer">
+                        <Icon name="ExternalLink" className="mr-2" size={20} />
+                        {bank.name === 'Альфа-Банк' ? 'Физлицам' : 'Получить ссылку'}
+                      </a>
+                    </Button>
+                    
+                    {bank.name === 'Альфа-Банк' && (
+                      <Button 
+                        className={`w-full bg-gradient-to-r ${bank.color} hover:opacity-90 transition-all hover:scale-105 text-white`}
+                        size="lg"
+                        variant="outline"
+                        asChild
+                      >
+                        <a href={(bank as any).businessLink} target="_blank" rel="noopener noreferrer">
+                          <Icon name="Briefcase" className="mr-2" size={20} />
+                          Для бизнеса
+                        </a>
+                      </Button>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
             ))}
