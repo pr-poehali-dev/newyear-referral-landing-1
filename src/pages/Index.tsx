@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 
 export default function Index() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const endDate = new Date('2025-01-31T23:59:59');
@@ -24,6 +26,27 @@ export default function Index() {
     }, 1000);
 
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.getAttribute('data-index') || '0');
+            setVisibleCards((prev) => [...prev, index]);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    cardRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
   }, []);
   const banks = [
     {
@@ -146,7 +169,12 @@ export default function Index() {
           {banks.map((bank, index) => (
             <Card 
               key={index}
-              className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 overflow-hidden"
+              ref={(el) => (cardRefs.current[index] = el)}
+              data-index={index}
+              className={`group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 overflow-hidden ${
+                visibleCards.includes(index) ? 'animate-on-scroll' : ''
+              }`}
+              style={{ animationDelay: `${index * 0.15}s` }}
             >
               <CardContent className="p-8">
                 <div className="flex items-start justify-between mb-6">
