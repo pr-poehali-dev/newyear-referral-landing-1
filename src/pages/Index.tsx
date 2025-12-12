@@ -28,7 +28,7 @@ export default function Index() {
   const banks = [
     {
       name: 'Т-Банк',
-      logo: '⚫️',
+      logo: 'https://cdn.poehali.dev/projects/2678937e-cf3d-43b2-9398-622888228a8f/files/926c2a26-9549-4d46-a430-08755ab0b46e.jpg',
       color: 'from-yellow-400 to-yellow-500',
       bonus: 'До 25000₽',
       description: 'за открытие счёта и дебетовую карту',
@@ -37,7 +37,7 @@ export default function Index() {
     },
     {
       name: 'ВТБ',
-      logo: '🔵',
+      logo: 'https://cdn.poehali.dev/projects/2678937e-cf3d-43b2-9398-622888228a8f/files/216b44d1-dff2-4506-b94c-dcbab353534e.jpg',
       color: 'from-blue-500 to-blue-600',
       bonus: 'До 15000₽',
       description: '5 выгодных предложений для вас',
@@ -52,7 +52,7 @@ export default function Index() {
     },
     {
       name: 'Альфа-Банк',
-      logo: '🔴',
+      logo: 'https://cdn.poehali.dev/projects/2678937e-cf3d-43b2-9398-622888228a8f/files/8544100b-c5b0-442b-8806-8c96276d0913.jpg',
       color: 'from-red-500 to-red-600',
       bonus: 'До 10000₽',
       description: 'деньги за карту или счёт + бонусы для бизнеса',
@@ -150,8 +150,8 @@ export default function Index() {
             >
               <CardContent className="p-8">
                 <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <div className="text-5xl mb-3">{bank.logo}</div>
+                  <div className="flex items-center gap-4">
+                    <img src={bank.logo} alt={bank.name} className="w-16 h-16 object-contain rounded-lg" />
                     <h3 className="text-2xl font-bold text-gray-900">{bank.name}</h3>
                   </div>
                   
