@@ -1,296 +1,203 @@
-import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import Icon from '@/components/ui/icon';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import Icon from "@/components/ui/icon";
 
-const Index = () => {
-  const [snowflakes, setSnowflakes] = useState<Array<{ id: number; left: number; duration: number; delay: number }>>([]);
-
-  useEffect(() => {
-    const flakes = Array.from({ length: 30 }, (_, i) => ({
-      id: i,
-      left: Math.random() * 100,
-      duration: 10 + Math.random() * 10,
-      delay: Math.random() * 5,
-    }));
-    setSnowflakes(flakes);
-  }, []);
-
+export default function Index() {
   const banks = [
     {
       name: 'Т-Банк',
-      logo: '🟡',
-      color: 'from-yellow-500 to-yellow-600',
-      bonus: 'До 5000₽',
-      description: 'за каждого приглашенного друга',
-      features: ['Кешбэк до 30%', 'Бесплатное обслуживание', 'Переводы без комиссии'],
-      link: 'https://tbank.ru/baf/3ZMdSH6pdjA'
+      logo: '⚫️',
+      color: 'from-yellow-400 to-yellow-500',
+      bonus: 'До 25000₽',
+      description: 'за открытие счёта и дебетовую карту',
+      features: ['Промокод: GIFT2025', 'Кешбэк до 30%', 'Бесплатное обслуживание'],
+      link: '#'
+    },
+    {
+      name: 'Сбербанк',
+      logo: '🟢',
+      color: 'from-green-500 to-green-600',
+      bonus: 'До 20000₽',
+      description: 'бонусы СберСпасибо за покупки',
+      features: ['Промокод: NEWYEAR', 'Подписка СберПрайм в подарок', 'Скидки у партнёров'],
+      link: '#'
     },
     {
       name: 'ВТБ',
       logo: '🔵',
       color: 'from-blue-500 to-blue-600',
-      bonus: 'До 3000₽',
-      description: 'промокоды для зарплатной карты и пенсии',
-      features: ['Зарплатная карта: b5416k2t', 'Пенсия в ВТБ: 6308em89', 'Накопительный счёт до 20%'],
-      link: 'https://www.vtb.ru/'
+      bonus: 'До 15000₽',
+      description: 'на накопительный счёт до 20% годовых',
+      features: ['Промокод: VTB2025', 'Мультикарта с кешбэком', 'Инвестиции от 1000₽'],
+      link: '#'
     },
     {
       name: 'Альфа-Банк',
       logo: '🔴',
       color: 'from-red-500 to-red-600',
       bonus: 'До 10000₽',
-      description: 'деньги за оформление карты или открытие счёта',
-      features: ['Карты и счета для физлиц', 'Счет для бизнеса: 2000 баллов', 'Кэшбэк до 10% за расчёты'],
-      link: 'https://alfa.me/PSgISW',
-      businessLink: 'https://alfa.me/nn1B5i'
-    }
-  ];
-
-  const benefits = [
-    {
-      icon: 'Gift',
-      title: 'Щедрые бонусы',
-      description: 'Получайте до 10 000₽ за каждого друга'
-    },
-    {
-      icon: 'Repeat',
-      title: 'Регулярный доход',
-      description: 'Реферальные выплаты каждый месяц'
-    },
-    {
-      icon: 'Users',
-      title: 'Неограниченно',
-      description: 'Приглашайте столько друзей, сколько хотите'
-    },
-    {
-      icon: 'Zap',
-      title: 'Быстрые выплаты',
-      description: 'Бонусы начисляются мгновенно'
+      description: 'за подписку Альфа-Премиум',
+      features: ['Промокод: ALFA25', 'Кешбэк до 100%', 'Бесплатные переводы'],
+      link: '#'
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background to-card overflow-hidden relative">
-      {snowflakes.map((flake) => (
-        <div
-          key={flake.id}
-          className="snowflake"
-          style={{
-            left: `${flake.left}%`,
-            animationDuration: `${flake.duration}s`,
-            animationDelay: `${flake.delay}s`,
-          }}
-        >
-          ❄️
-        </div>
-      ))}
-
-      <div className="container mx-auto px-4 py-8 relative z-10">
-        <section id="hero" className="min-h-screen flex flex-col items-center justify-center text-center space-y-8 animate-fade-in">
-          <div className="space-y-4">
-            <div className="flex items-center justify-center gap-3 text-4xl md:text-6xl mb-4">
-              <span className="twinkle">✨</span>
-              <span className="twinkle" style={{ animationDelay: '0.5s' }}>🎄</span>
-              <span className="twinkle" style={{ animationDelay: '1s' }}>✨</span>
+    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-green-50">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-green-500/10 to-yellow-500/10 animate-pulse"></div>
+        
+        <div className="container mx-auto px-4 py-20 relative z-10">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="mb-8 animate-bounce">
+              <span className="text-8xl">🎁</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-glow">
-              Новогодние бонусы
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-red-600 via-green-600 to-yellow-600 bg-clip-text text-transparent">
+              ПОДАРИ СЕБЕ БАНК
             </h1>
             
-            <p className="text-2xl md:text-4xl font-semibold text-primary">
-              от ведущих банков России
+            <p className="text-xl md:text-2xl text-gray-700 mb-4">
+              Новогодние предложения от топовых банков России
             </p>
             
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mt-6">
-              Получайте щедрые вознаграждения за приглашение друзей в Т-Банк, ВТБ и Альфа-Банк
+            <p className="text-lg text-gray-600 mb-8">
+              Получи до 25 000₽ бонусами — лучший подарок к празднику! 🎄
             </p>
-          </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 mt-8">
-            <Button 
-              size="lg" 
-              className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all hover:scale-105"
-              onClick={() => document.getElementById('banks')?.scrollIntoView({ behavior: 'smooth' })}
+            <div className="flex flex-wrap gap-4 justify-center items-center text-sm text-gray-600">
+              <div className="flex items-center gap-2">
+                <Icon name="Gift" size={20} className="text-red-500" />
+                <span>Эксклюзивные бонусы</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Icon name="Star" size={20} className="text-yellow-500" />
+                <span>Промокоды 2025</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Icon name="Shield" size={20} className="text-green-500" />
+                <span>Официальные банки</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Banks Grid */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {banks.map((bank, index) => (
+            <Card 
+              key={index}
+              className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 overflow-hidden"
             >
-              <Icon name="Gift" className="mr-2" size={24} />
-              Получить бонусы
-            </Button>
-            
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="text-lg px-8 py-6 border-2 hover:bg-card/50 transition-all hover:scale-105"
-              onClick={() => document.getElementById('benefits')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              <Icon name="Info" className="mr-2" size={24} />
-              Как это работает
-            </Button>
-          </div>
-
-          <div className="mt-12 flex items-center gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-primary">18 000₽</div>
-              <div className="text-sm text-muted-foreground">максимальный бонус</div>
-            </div>
-            <div className="w-px h-12 bg-border"></div>
-            <div>
-              <div className="text-4xl font-bold text-secondary">3 банка</div>
-              <div className="text-sm text-muted-foreground">лучшие предложения</div>
-            </div>
-            <div className="w-px h-12 bg-border"></div>
-            <div>
-              <div className="text-4xl font-bold text-accent">∞</div>
-              <div className="text-sm text-muted-foreground">без ограничений</div>
-            </div>
-          </div>
-        </section>
-
-        <section id="banks" className="py-20">
-          <div className="text-center mb-16 animate-slide-up">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 flex items-center justify-center gap-3">
-              <span>🎁</span>
-              Реферальные программы банков
-              <span>🎁</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Выбирайте банк и начинайте зарабатывать на рекомендациях прямо сейчас
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {banks.map((bank, index) => (
-              <Card 
-                key={bank.name} 
-                className="border-2 hover:border-primary transition-all hover:scale-105 hover:shadow-2xl bg-card/80 backdrop-blur-sm animate-fade-in"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <CardHeader className="text-center">
-                  <div className={`text-8xl mb-4 animate-glow`}>
-                    {bank.logo}
-                  </div>
-                  <CardTitle className="text-3xl mb-2">{bank.name}</CardTitle>
-                  <div className={`text-4xl font-bold bg-gradient-to-r ${bank.color} bg-clip-text text-transparent`}>
-                    {bank.bonus}
-                  </div>
-                  <CardDescription className="text-base mt-2">
-                    {bank.description}
-                  </CardDescription>
-                </CardHeader>
-                
-                <CardContent className="space-y-4">
-                  <div className="space-y-3">
-                    {bank.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-2">
-                        <Icon name="Check" className="text-primary mt-1 flex-shrink-0" size={20} />
-                        <span className="text-sm">{feature}</span>
-                      </div>
-                    ))}
+              <CardContent className="p-8">
+                <div className="flex items-start justify-between mb-6">
+                  <div>
+                    <div className="text-5xl mb-3">{bank.logo}</div>
+                    <h3 className="text-2xl font-bold text-gray-900">{bank.name}</h3>
                   </div>
                   
-                  <div className="space-y-2">
-                    <Button 
-                      className={`w-full bg-gradient-to-r ${bank.color} hover:opacity-90 transition-all hover:scale-105 text-white`}
-                      size="lg"
-                      asChild
-                    >
-                      <a href={bank.link} target="_blank" rel="noopener noreferrer">
-                        <Icon name="ExternalLink" className="mr-2" size={20} />
-                        {bank.name === 'Альфа-Банк' ? 'Физлицам' : 'Получить ссылку'}
-                      </a>
-                    </Button>
-                    
-                    {bank.name === 'Альфа-Банк' && (
-                      <Button 
-                        className={`w-full bg-gradient-to-r ${bank.color} hover:opacity-90 transition-all hover:scale-105 text-white`}
-                        size="lg"
-                        variant="outline"
-                        asChild
-                      >
-                        <a href={(bank as any).businessLink} target="_blank" rel="noopener noreferrer">
-                          <Icon name="Briefcase" className="mr-2" size={20} />
-                          Для бизнеса
-                        </a>
-                      </Button>
-                    )}
+                  <div className={`bg-gradient-to-r ${bank.color} text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg`}>
+                    {bank.bonus}
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <section id="benefits" className="py-20">
-          <div className="text-center mb-16 animate-slide-up">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 flex items-center justify-center gap-3">
-              <span>⭐</span>
-              Преимущества реферальной системы
-              <span>⭐</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Зарабатывайте вместе с друзьями — просто, выгодно, надежно
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {benefits.map((benefit, index) => (
-              <Card 
-                key={benefit.title}
-                className="text-center p-6 hover:border-primary transition-all hover:scale-105 bg-card/80 backdrop-blur-sm animate-fade-in"
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                  <Icon name={benefit.icon as any} className="text-primary" size={32} />
                 </div>
-                <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
-                <p className="text-muted-foreground">{benefit.description}</p>
-              </Card>
-            ))}
-          </div>
 
-          <Card className="mt-16 bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 border-2 border-primary/30 animate-slide-up">
-            <CardContent className="p-8 md:p-12 text-center">
-              <div className="text-5xl mb-4">🎊</div>
-              <h3 className="text-3xl font-bold mb-4">
-                Начните зарабатывать прямо сейчас!
-              </h3>
-              <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Выберите банк, получите реферальную ссылку и делитесь ей с друзьями. 
-                За каждого нового клиента вы получите щедрое вознаграждение!
-              </p>
-              <Button 
-                size="lg" 
-                className="text-lg px-10 py-6 bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all hover:scale-105"
-                onClick={() => document.getElementById('banks')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                <Icon name="Sparkles" className="mr-2" size={24} />
-                Выбрать банк
-              </Button>
-            </CardContent>
-          </Card>
-        </section>
+                <p className="text-gray-600 mb-6">{bank.description}</p>
 
-        <footer className="py-12 text-center border-t border-border mt-20">
-          <div className="space-y-4">
-            <div className="flex items-center justify-center gap-2 text-2xl">
-              <span className="twinkle">🎄</span>
-              <span className="font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                С Новым Годом!
-              </span>
-              <span className="twinkle" style={{ animationDelay: '1s' }}>✨</span>
+                <div className="space-y-3 mb-6">
+                  {bank.features.map((feature, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <Icon name="CheckCircle2" size={20} className="text-green-500 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <Button 
+                  className={`w-full bg-gradient-to-r ${bank.color} hover:opacity-90 transition-all hover:scale-105 text-white font-semibold text-lg`}
+                  size="lg"
+                  asChild
+                >
+                  <a href={bank.link} target="_blank" rel="noopener noreferrer">
+                    <Icon name="Gift" className="mr-2" size={22} />
+                    Получить подарок
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="bg-gradient-to-r from-red-500/5 via-green-500/5 to-yellow-500/5 py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
+            Как получить свой подарок?
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="text-center">
+              <div className="w-20 h-20 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4">
+                1
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Выбери банк</h3>
+              <p className="text-gray-600">Изучи предложения и выбери самое выгодное</p>
             </div>
-            <p className="text-sm text-muted-foreground">
-              Пусть новый год принесет вам не только праздничное настроение, но и финансовое благополучие
+
+            <div className="text-center">
+              <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4">
+                2
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Введи промокод</h3>
+              <p className="text-gray-600">Используй эксклюзивный промокод при оформлении</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-20 h-20 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4">
+                3
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Получи бонусы</h3>
+              <p className="text-gray-600">Деньги придут на счёт в течение 5 дней</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="container mx-auto px-4 py-16">
+        <Card className="bg-gradient-to-r from-red-500 via-green-500 to-yellow-500 border-0">
+          <CardContent className="p-12 text-center text-white">
+            <div className="text-6xl mb-6">🎄</div>
+            <h2 className="text-4xl font-bold mb-4">
+              Не упусти новогодние предложения!
+            </h2>
+            <p className="text-xl mb-8 opacity-90">
+              Акции действуют ограниченное время. Успей оформить карту до конца января 2025!
             </p>
-            <div className="text-xs text-muted-foreground mt-4">
-              © 2025 Новогодние бонусы. Все права защищены.
-            </div>
-          </div>
-        </footer>
-      </div>
+            <Button 
+              size="lg" 
+              variant="secondary"
+              className="bg-white text-red-600 hover:bg-gray-100 font-bold text-lg px-8"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
+              <Icon name="ArrowUp" className="mr-2" size={22} />
+              Выбрать банк
+            </Button>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-8">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-gray-400">
+            © 2025 ПОДАРИ СЕБЕ БАНК. Все условия акций уточняйте на сайтах банков.
+          </p>
+        </div>
+      </footer>
     </div>
   );
-};
-
-export default Index;
+}
