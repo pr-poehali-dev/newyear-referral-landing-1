@@ -30,15 +30,6 @@ export default function Index() {
       description: 'на накопительный счёт до 20% годовых',
       features: ['Промокод: VTB2025', 'Мультикарта с кешбэком', 'Инвестиции от 1000₽'],
       link: '#'
-    },
-    {
-      name: 'Альфа-Банк',
-      logo: '🔴',
-      color: 'from-red-500 to-red-600',
-      bonus: 'До 10000₽',
-      description: 'за подписку Альфа-Премиум',
-      features: ['Промокод: ALFA25', 'Кешбэк до 100%', 'Бесплатные переводы'],
-      link: '#'
     }
   ];
 
@@ -86,7 +77,7 @@ export default function Index() {
 
       {/* Banks Grid */}
       <section className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {banks.map((bank, index) => (
             <Card 
               key={index}
