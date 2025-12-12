@@ -40,9 +40,15 @@ export default function Index() {
       logo: '🔵',
       color: 'from-blue-500 to-blue-600',
       bonus: 'До 15000₽',
-      description: 'на накопительный счёт до 20% годовых',
-      features: ['Промокод: VTB2025', 'Мультикарта с кешбэком', 'Инвестиции от 1000₽'],
-      link: '#'
+      description: '5 выгодных предложений для вас',
+      features: ['Зарплатная карта', 'Дебетовая карта', 'Пакеты Привилегия и Прайм', 'Получение пенсии', 'Бонусы и кешбэк'],
+      links: [
+        { name: 'Зарплатная карта', url: 'https://vtb.ru/l/b5416k2t' },
+        { name: 'Дебетовая карта', url: 'https://vtb.ru/l/e1k0tpk5' },
+        { name: 'Пакет Привилегия', url: 'https://vtb.ru/l/118116x4' },
+        { name: 'Получение пенсии', url: 'https://vtb.ru/l/6308em89' },
+        { name: 'Пакет Прайм', url: 'https://vtb.ru/l/1m4echme' }
+      ]
     },
     {
       name: 'Альфа-Банк',
@@ -162,16 +168,34 @@ export default function Index() {
                   ))}
                 </div>
 
-                <Button 
-                  className={`w-full bg-gradient-to-r ${bank.color} hover:opacity-90 transition-all hover:scale-105 text-white font-semibold text-lg`}
-                  size="lg"
-                  asChild
-                >
-                  <a href={bank.link} target="_blank" rel="noopener noreferrer">
-                    <Icon name="Gift" className="mr-2" size={22} />
-                    Получить подарок
-                  </a>
-                </Button>
+                {(bank as any).links ? (
+                  <div className="space-y-2">
+                    {(bank as any).links.map((link: any, i: number) => (
+                      <Button 
+                        key={i}
+                        className={`w-full bg-gradient-to-r ${bank.color} hover:opacity-90 transition-all hover:scale-105 text-white font-semibold`}
+                        size="default"
+                        asChild
+                      >
+                        <a href={link.url} target="_blank" rel="noopener noreferrer">
+                          <Icon name="ExternalLink" className="mr-2" size={18} />
+                          {link.name}
+                        </a>
+                      </Button>
+                    ))}
+                  </div>
+                ) : (
+                  <Button 
+                    className={`w-full bg-gradient-to-r ${bank.color} hover:opacity-90 transition-all hover:scale-105 text-white font-semibold text-lg`}
+                    size="lg"
+                    asChild
+                  >
+                    <a href={(bank as any).link} target="_blank" rel="noopener noreferrer">
+                      <Icon name="Gift" className="mr-2" size={22} />
+                      Получить подарок
+                    </a>
+                  </Button>
+                )}
               </CardContent>
             </Card>
           ))}
