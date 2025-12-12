@@ -1,8 +1,30 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
 
 export default function Index() {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const endDate = new Date('2025-01-31T23:59:59');
+    
+    const timer = setInterval(() => {
+      const now = new Date();
+      const difference = endDate.getTime() - now.getTime();
+      
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60)
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
   const banks = [
     {
       name: 'Т-Банк',
@@ -56,6 +78,40 @@ export default function Index() {
             <p className="text-lg text-gray-600 mb-8">
               Получи до 25 000₽ бонусами — лучший подарок к празднику! 🎄
             </p>
+
+            {/* Countdown Timer */}
+            <div className="mb-8 bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl max-w-2xl mx-auto border-2 border-red-200">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <Icon name="Clock" size={24} className="text-red-500" />
+                <p className="text-lg font-semibold text-gray-800">До конца акции осталось:</p>
+              </div>
+              <div className="grid grid-cols-4 gap-4">
+                <div className="text-center">
+                  <div className="bg-gradient-to-br from-red-500 to-red-600 text-white rounded-lg p-4 shadow-lg">
+                    <div className="text-3xl md:text-4xl font-bold">{timeLeft.days}</div>
+                  </div>
+                  <div className="text-sm text-gray-600 mt-2 font-medium">дней</div>
+                </div>
+                <div className="text-center">
+                  <div className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-lg p-4 shadow-lg">
+                    <div className="text-3xl md:text-4xl font-bold">{timeLeft.hours}</div>
+                  </div>
+                  <div className="text-sm text-gray-600 mt-2 font-medium">часов</div>
+                </div>
+                <div className="text-center">
+                  <div className="bg-gradient-to-br from-yellow-400 to-yellow-500 text-white rounded-lg p-4 shadow-lg">
+                    <div className="text-3xl md:text-4xl font-bold">{timeLeft.minutes}</div>
+                  </div>
+                  <div className="text-sm text-gray-600 mt-2 font-medium">минут</div>
+                </div>
+                <div className="text-center">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg p-4 shadow-lg">
+                    <div className="text-3xl md:text-4xl font-bold">{timeLeft.seconds}</div>
+                  </div>
+                  <div className="text-sm text-gray-600 mt-2 font-medium">секунд</div>
+                </div>
+              </div>
+            </div>
 
             <div className="flex flex-wrap gap-4 justify-center items-center text-sm text-gray-600">
               <div className="flex items-center gap-2">
