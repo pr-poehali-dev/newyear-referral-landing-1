@@ -33,7 +33,7 @@ export default function Index() {
       bonus: 'До 25000₽',
       description: 'за открытие счёта и дебетовую карту',
       features: ['Промокод: GIFT2025', 'Кешбэк до 30%', 'Бесплатное обслуживание'],
-      link: '#'
+      link: 'https://tbank.ru/baf/3ZMdSH6pdjA'
     },
     {
       name: 'ВТБ',
