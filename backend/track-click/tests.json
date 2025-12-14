@@ -1,0 +1,19 @@
+{
+  "tests": [
+    {
+      "name": "Track click with all fields",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "bank_name": "Т-Банк",
+        "link_name": "Дебетовая карта",
+        "link_url": "https://tbank.ru/test"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

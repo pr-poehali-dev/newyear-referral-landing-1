@@ -9,6 +9,18 @@ export default function Index() {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const hasTracked = useRef(false);
 
+  const trackClick = async (bankName: string, linkName: string, linkUrl: string) => {
+    try {
+      await fetch('https://functions.poehali.dev/5ba5a1dc-190b-485a-aa3f-c0cae99b7b5a', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bank_name: bankName, link_name: linkName, link_url: linkUrl })
+      });
+    } catch (error) {
+      console.error('Failed to track click:', error);
+    }
+  };
+
   useEffect(() => {
     const trackVisitor = async () => {
       if (hasTracked.current) return;
@@ -192,12 +204,13 @@ export default function Index() {
                         key={i}
                         className={`w-full bg-gradient-to-r ${bank.color} hover:opacity-90 transition-all hover:scale-105 text-white font-semibold`}
                         size="default"
-                        asChild
+                        onClick={() => {
+                          trackClick(bank.name, link.name, link.url);
+                          window.open(link.url, '_blank');
+                        }}
                       >
-                        <a href={link.url} target="_blank" rel="noopener noreferrer">
-                          <Icon name="ExternalLink" className="mr-2" size={18} />
-                          {link.name}
-                        </a>
+                        <Icon name="ExternalLink" className="mr-2" size={18} />
+                        {link.name}
                       </Button>
                     ))}
                   </div>
@@ -205,12 +218,13 @@ export default function Index() {
                   <Button 
                     className={`w-full bg-gradient-to-r ${bank.color} hover:opacity-90 transition-all hover:scale-105 text-white font-semibold text-lg`}
                     size="lg"
-                    asChild
+                    onClick={() => {
+                      trackClick(bank.name, 'Основная кнопка', (bank as any).link);
+                      window.open((bank as any).link, '_blank');
+                    }}
                   >
-                    <a href={(bank as any).link} target="_blank" rel="noopener noreferrer">
-                      <Icon name="Gift" className="mr-2" size={22} />
-                      Получить подарок
-                    </a>
+                    <Icon name="Gift" className="mr-2" size={22} />
+                    Получить подарок
                   </Button>
                 )}
               </CardContent>
@@ -276,6 +290,17 @@ export default function Index() {
             </Button>
           </CardContent>
         </Card>
+      </section>
+
+      {/* Stats Link */}
+      <section className="container mx-auto px-4 pb-16 text-center">
+        <a 
+          href="/stats"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 border-2 border-gray-200 rounded-full transition-all hover:shadow-lg text-gray-700 font-medium"
+        >
+          <Icon name="BarChart3" size={20} className="text-blue-500" />
+          Посмотреть статистику переходов
+        </a>
       </section>
 
       {/* Footer */}

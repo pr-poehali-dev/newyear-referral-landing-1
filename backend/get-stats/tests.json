@@ -1,0 +1,15 @@
+{
+  "tests": [
+    {
+      "name": "Get click statistics",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "total_clicks": 1,
+        "today_clicks": 1
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
