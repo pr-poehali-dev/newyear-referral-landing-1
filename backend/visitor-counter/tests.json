@@ -1,0 +1,12 @@
+{
+  "tests": [
+    {
+      "name": "Get visitor count returns valid numbers",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {},
+      "bodyMatcher": "partial"
+    }
+  ]
+}

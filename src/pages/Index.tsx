@@ -5,7 +5,40 @@ import Icon from "@/components/ui/icon";
 
 export default function Index() {
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const [visitorCount, setVisitorCount] = useState<number>(0);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const hasTracked = useRef(false);
+
+  useEffect(() => {
+    const trackVisitor = async () => {
+      if (hasTracked.current) return;
+      hasTracked.current = true;
+
+      const hasVisited = localStorage.getItem('visited');
+      const isUnique = !hasVisited;
+      
+      if (isUnique) {
+        localStorage.setItem('visited', 'true');
+      }
+
+      try {
+        const response = await fetch('https://functions.poehali.dev/7b4fa474-4677-4e22-8a39-7ee709cf5f8c', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ unique: isUnique })
+        });
+        const data = await response.json();
+        setVisitorCount(data.total);
+      } catch (error) {
+        console.error('Failed to track visitor:', error);
+        const response = await fetch('https://functions.poehali.dev/7b4fa474-4677-4e22-8a39-7ee709cf5f8c');
+        const data = await response.json();
+        setVisitorCount(data.total);
+      }
+    };
+
+    trackVisitor();
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -90,7 +123,7 @@ export default function Index() {
               Получи до 25 000₽ бонусами — лучший подарок к празднику! 🎄
             </p>
 
-            <div className="flex flex-wrap gap-4 justify-center items-center text-sm text-gray-600">
+            <div className="flex flex-wrap gap-4 justify-center items-center text-sm text-gray-600 mb-6">
               <div className="flex items-center gap-2">
                 <Icon name="Gift" size={20} className="text-red-500" />
                 <span>Эксклюзивные бонусы</span>
@@ -103,6 +136,14 @@ export default function Index() {
                 <Icon name="Shield" size={20} className="text-green-500" />
                 <span>Официальные банки</span>
               </div>
+            </div>
+
+            {/* Visitor Counter */}
+            <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-gray-200">
+              <Icon name="Users" size={20} className="text-blue-500" />
+              <span className="text-gray-700 font-medium">
+                Сайт посетило: <span className="text-blue-600 font-bold">{visitorCount.toLocaleString('ru-RU')}</span> человек
+              </span>
             </div>
           </div>
         </div>
