@@ -292,17 +292,6 @@ export default function Index() {
         </Card>
       </section>
 
-      {/* Stats Link */}
-      <section className="container mx-auto px-4 pb-16 text-center">
-        <a 
-          href="/stats"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 border-2 border-gray-200 rounded-full transition-all hover:shadow-lg text-gray-700 font-medium"
-        >
-          <Icon name="BarChart3" size={20} className="text-blue-500" />
-          Посмотреть статистику переходов
-        </a>
-      </section>
-
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-8">
         <div className="container mx-auto px-4 text-center">
