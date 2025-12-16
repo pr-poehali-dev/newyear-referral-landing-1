@@ -294,10 +294,23 @@ export default function Index() {
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-400">
-            © 2025 ПОДАРИ СЕБЕ БАНК. Все условия акций уточняйте на сайтах банков.
-          </p>
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-gray-400 text-center md:text-left flex-1">
+              © 2025 ПОДАРИ СЕБЕ БАНК. Все условия акций уточняйте на сайтах банков.
+            </p>
+            <a 
+              href="https://metrika.yandex.ru/stat/?id=105870202" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+              <span className="text-sm">Яндекс.Метрика</span>
+            </a>
+          </div>
         </div>
       </footer>
     </div>
