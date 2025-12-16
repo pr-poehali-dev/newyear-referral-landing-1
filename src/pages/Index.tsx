@@ -16,6 +16,14 @@ export default function Index() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ bank_name: bankName, link_name: linkName, link_url: linkUrl })
       });
+      
+      if (typeof window !== 'undefined' && (window as any).ym) {
+        (window as any).ym(105870202, 'reachGoal', 'click_bank_link', {
+          bank: bankName,
+          link_type: linkName,
+          url: linkUrl
+        });
+      }
     } catch (error) {
       console.error('Failed to track click:', error);
     }
