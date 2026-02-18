@@ -261,8 +261,8 @@ export default function Index() {
               <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4">
                 2
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Введи промокод</h3>
-              <p className="text-gray-600">Используй эксклюзивный промокод при оформлении</p>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Оформи продукт</h3>
+              <p className="text-gray-600">В банке нажми на кнопку выбранного продукта или используй эксклюзивный промокод при оформлении</p>
             </div>
 
             <div className="text-center">
